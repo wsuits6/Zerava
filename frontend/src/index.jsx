@@ -5,8 +5,12 @@ import "./styles/main.css";
 import "./App.css";
 
 // Initialize dark theme by default
-if (!document.documentElement.getAttribute('data-theme')) {
-  document.documentElement.setAttribute('data-theme', 'dark');
+try {
+  if (!document.documentElement.getAttribute('data-theme')) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  }
+} catch (error) {
+  console.error('Error setting theme:', error);
 }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));

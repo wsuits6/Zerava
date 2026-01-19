@@ -8,21 +8,34 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     // Check for stored auth on mount
-    const storedUser = localStorage.getItem('zerava_user');
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
+    try {
+      const storedUser = localStorage.getItem('zerava_user');
+      if (storedUser) {
+        setUser(JSON.parse(storedUser));
+      }
+    } catch (error) {
+      console.error('Error reading from localStorage:', error);
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   }, []);
 
   const login = (userData) => {
     setUser(userData);
-    localStorage.setItem('zerava_user', JSON.stringify(userData));
+    try {
+      localStorage.setItem('zerava_user', JSON.stringify(userData));
+    } catch (error) {
+      console.error('Error saving to localStorage:', error);
+    }
   };
 
   const logout = () => {
     setUser(null);
-    localStorage.removeItem('zerava_user');
+    try {
+      localStorage.removeItem('zerava_user');
+    } catch (error) {
+      console.error('Error removing from localStorage:', error);
+    }
   };
 
   return (

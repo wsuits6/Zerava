@@ -71,7 +71,6 @@ body {
   background-color: var(--color-bg);
   color: var(--color-white);
   line-height: 1.6;
-  background-image: url(./assets/bg-texture.png);
   -webkit-font-smoothing: antialiased;
 }
 
@@ -81,18 +80,18 @@ body::before {
   position: fixed;
   inset: 0;
   z-index: -1;
-  background-image: url(./assets/bg-texture.png), linear-gradient(135deg, rgba(77,181,255,0.06), rgba(44,44,108,0.06));
-  background-size: 1600px 1600px, cover;
-  background-repeat: repeat, no-repeat;
-  background-position: 0 0, center;
+  background-image: linear-gradient(135deg, rgba(77,181,255,0.06), rgba(44,44,108,0.06));
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   opacity: 1;
   will-change: background-position, transform, opacity;
   animation: bgMove 40s linear infinite;
 }
 
 @keyframes bgMove {
-  from { background-position: 0 0, center; }
-  to { background-position: -800px -600px, center; }
+  from { background-position: 0 0; }
+  to { background-position: -800px -600px; }
 }
 
 /* Low-cost parallax accent: a gentle translated gradient using transform hardware acceleration */
